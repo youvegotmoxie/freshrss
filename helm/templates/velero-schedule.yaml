@@ -6,6 +6,7 @@ metadata:
   labels:
     {{- include "freshrss.labels" . | nindent 4 }}
   name: {{ include "freshrss.fullname" . }}-backup
+  namespace: velero
 spec:
 {{- with .Values.velero.backupSchedule }}
   {{- toYaml . | nindent 2 }}
