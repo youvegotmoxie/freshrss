@@ -1,0 +1,13 @@
+{{- if .Values.velero.enabled }}
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  labels:
+    {{- include "freshrss.labels" . | nindent 4 }}
+  name: {{ include "freshrss.fullname" . }}-backup
+spec:
+{{- with .Values.velero.backupSchedule }}
+  {{- toYaml . | nindent 2 }}
+{{- end }}
+{{- end }}

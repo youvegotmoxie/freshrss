@@ -1,0 +1,42 @@
+# k8s-us-east-1 values
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-dns01-aws
+  hosts:
+    - host: rss.unreliable.cloud
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+  - secretName: freshrss-tls
+    hosts:
+      - rss.unreliable.cloud
+
+podAnnotations:
+  backup.velero.io/backup-volumes: "freshrss-data,freshrss-extensions"
+
+persistence:
+  enabled: true
+
+velero:
+  enabled: true
+  backupSchedule:
+    schedule: '@every 24h'
+    template:
+      includeClusterResources: true
+      includedNamespaces:
+      - freshrss
+      includedResources:
+      - '*'
+      labelSelector:
+        matchLabels:
+          app.kubernetes.io/name: freshrss
+      snapshotVolumes: true
+      storageLocation: velero-hetzner-aws
+      ttl: 360h0m0s
+      volumeSnapshotLocations:
+      - velero-hetzner-aws
