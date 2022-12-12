@@ -43,6 +43,12 @@ spec:
             - name: {{ $key | upper | replace "-" "_" }}
               value: {{ $value }}
             {{- end }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: freshrss-datastore-pguser-freshrss
+                  key: password
+                  optional: false
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

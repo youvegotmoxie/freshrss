@@ -20,10 +20,17 @@ podAnnotations:
   backup.velero.io/backup-volumes: "freshrss-data,freshrss-extensions"
 
 persistence:
+  enabled: false
+
+postgres:
   enabled: true
 
+env:
+  POSTGRES_DB: freshrss
+  POSTGRES_USER: freshrss
+
 velero:
-  enabled: true
+  enabled: false
   backupSchedule:
     schedule: '@every 24h'
     template:
