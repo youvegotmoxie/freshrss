@@ -1,6 +1,6 @@
 # freshrss
 
-![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.20.2](https://img.shields.io/badge/AppVersion-1.20.2-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.20.2](https://img.shields.io/badge/AppVersion-1.20.2-informational?style=flat-square)
 
 A Helm chart to deploy FreshRSS
 
@@ -9,11 +9,6 @@ A Helm chart to deploy FreshRSS
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| autoscaling.enabled | bool | `false` |  |
-| autoscaling.maxReplicas | int | `4` |  |
-| autoscaling.minReplicas | int | `1` |  |
-| autoscaling.targetCPUUtilizationPercentage | int | `70` |  |
-| autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | env.CRON_MIN | string | `"1,31"` |  |
 | env.TZ | string | `"America/Chicago"` |  |
 | fullnameOverride | string | `""` |  |
@@ -32,9 +27,9 @@ A Helm chart to deploy FreshRSS
 | nodeSelector | object | `{}` |  |
 | persistence.enabled | bool | `false` |  |
 | persistence.size | string | `"5Gi"` |  |
-| persistence.storageClassName | string | `"hcloud-volumes"` |  |
+| persistence.storageClassName | string | `""` |  |
 | podAnnotations | object | `{}` |  |
-| podLabels.app | string | `"freshrss"` |  |
+| podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
 | resources.limits.cpu | string | `"200m"` |  |

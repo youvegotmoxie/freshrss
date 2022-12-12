@@ -19,8 +19,12 @@ ingress:
 podAnnotations:
   backup.velero.io/backup-volumes: "freshrss-data,freshrss-extensions"
 
+podLabels:
+  app: freshrss
+
 persistence:
   enabled: true
+  storageClassName: hcloud-volumes
 
 velero:
   enabled: true

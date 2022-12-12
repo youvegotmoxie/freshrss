@@ -17,8 +17,7 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
-podLabels:
-  app: freshrss
+podLabels: {}
 
 env:
   TZ: "America/Chicago"
@@ -50,24 +49,14 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 4
-  targetCPUUtilizationPercentage: 70
-  targetMemoryUtilizationPercentage: 80
-
 nodeSelector: {}
 tolerations: []
 affinity: {}
 
 persistence:
   enabled: false
-  storageClassName: hcloud-volumes
+  storageClassName: ""
   size: 5Gi
-
-postgres:
-  enabled: false
 
 velero:
   enabled: false
