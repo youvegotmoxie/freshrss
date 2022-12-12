@@ -66,6 +66,9 @@ persistence:
   storageClassName: hcloud-volumes
   size: 5Gi
 
+postgres:
+  enabled: false
+
 velero:
   enabled: false
   backupSchedule: []
