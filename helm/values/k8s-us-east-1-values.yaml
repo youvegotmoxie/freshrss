@@ -16,8 +16,8 @@ ingress:
     hosts:
       - rss.unreliable.cloud
 
-podAnnotations:
-  backup.velero.io/backup-volumes: "freshrss-data,freshrss-extensions"
+podAnnotations: {}
+#  backup.velero.io/backup-volumes: "freshrss-data,freshrss-extensions"
 
 persistence:
   enabled: false
