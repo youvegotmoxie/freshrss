@@ -17,8 +17,7 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
-podLabels:
-  app: freshrss
+podLabels: {}
 
 env:
   TZ: "America/Chicago"
@@ -63,11 +62,8 @@ affinity: {}
 
 persistence:
   enabled: false
-  storageClassName: hcloud-volumes
+  storageClassName: ""
   size: 5Gi
-
-postgres:
-  enabled: false
 
 velero:
   enabled: false

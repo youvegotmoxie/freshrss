@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "freshrss.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "freshrss.selectorLabels" . | nindent 6 }}
@@ -42,14 +40,6 @@ spec:
             {{- range $key, $value :=  .Values.env }}
             - name: {{ $key | upper | replace "-" "_" }}
               value: {{ $value }}
-            {{- end }}
-            {{- if .Values.postgres.enabled }}
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: freshrss-datastore-pguser-freshrss
-                  key: password
-                  optional: false
             {{- end }}
           ports:
             - name: http
