@@ -16,21 +16,14 @@ ingress:
     hosts:
       - rss.unreliable.cloud
 
-podAnnotations: {}
-#  backup.velero.io/backup-volumes: "freshrss-data,freshrss-extensions"
+podAnnotations:
+  backup.velero.io/backup-volumes: "freshrss-data,freshrss-extensions"
 
 persistence:
-  enabled: false
-
-postgres:
   enabled: true
 
-env:
-  POSTGRES_DB: freshrss
-  POSTGRES_USER: freshrss
-
 velero:
-  enabled: false
+  enabled: true
   backupSchedule:
     schedule: '@every 24h'
     template:
