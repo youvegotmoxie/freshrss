@@ -67,7 +67,16 @@ istio:
       perTryTimeout: 2s
       retryOn: connect-failure,refused-stream,gateway-error
     envoyFilter:
-     enabled: true
-     maxRequests: 400
-     tokenMultiplier: 1
-     interval: "1s"
+      enabled: true
+      maxRequests: 400
+      tokenMultiplier: 1
+      interval: "1s"
+    trafficPolicy:
+      connectionPool:
+        http:
+          h2UpgradePolicy: UPGRADE
+          maxRequestsPerConnection: 100
+      outlierDetection:
+        consecutive5xxErrors: 30
+        interval: 5m
+        baseEjectionTime: 5m
