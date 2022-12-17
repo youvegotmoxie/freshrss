@@ -15,7 +15,7 @@ spec:
     route:
     - destination:
         port:
-          number: 80
+          number: {{ .Values.service.port }}
         host: {{ $fullName }}
     {{- if .Values.istio.virtualService.retries }}
     {{- with .Values.istio.virtualService.retries }}

@@ -21,6 +21,7 @@ podAnnotations:
 
 podLabels:
   app: freshrss
+  version: "1.20.2"
 
 persistence:
   enabled: true
@@ -61,3 +62,8 @@ istio:
       attempts: 3
       perTryTimeout: 2s
       retryOn: connect-failure,refused-stream,gateway-error
+    envoyFilter:
+     enabled: true
+     maxRequests: 400
+     tokenMultiplier: 1
+     interval: "1s"
