@@ -61,12 +61,3 @@ istio:
       attempts: 3
       perTryTimeout: 2s
       retryOn: connect-failure,refused-stream,gateway-error
-    trafficPolicy:
-      connectionPool:
-        http:
-          h2UpgradePolicy: UPGRADE
-          maxRequestsPerConnection: 100
-      outlierDetection:
-        consecutive5xxErrors: 30
-        interval: 5m
-        baseEjectionTime: 5m

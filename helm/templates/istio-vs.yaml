@@ -14,9 +14,9 @@ spec:
   - name: {{ $fullName }}
     route:
     - destination:
+        port:
+          number: 80
         host: {{ $fullName }}
-        subset: main
-      weight: 100
     {{- if .Values.istio.virtualService.retries }}
     {{- with .Values.istio.virtualService.retries }}
     retries:
