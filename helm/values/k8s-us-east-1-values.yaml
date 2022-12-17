@@ -1,7 +1,7 @@
 # k8s-us-east-1 values
 
 ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   annotations:
     kubernetes.io/tls-acme: "true"
@@ -44,3 +44,29 @@ velero:
       ttl: 360h0m0s
       volumeSnapshotLocations:
       - velero-hetzner-aws
+
+istio:
+  enabled: true
+  gateway:
+    hostName: rss.unreliable.cloud
+    selector: ingressgateway
+    tls:
+      enabled: true
+      credentialName: freshrss-tls
+      issuer:
+        name: letsencrypt-dns01-aws
+        kind: ClusterIssuer
+  virtualService:
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: connect-failure,refused-stream,gateway-error
+    trafficPolicy:
+      connectionPool:
+        http:
+          h2UpgradePolicy: UPGRADE
+          maxRequestsPerConnection: 100
+      outlierDetection:
+        consecutive5xxErrors: 30
+        interval: 5m
+        baseEjectionTime: 5m

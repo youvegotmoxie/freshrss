@@ -1,0 +1,16 @@
+{{- if .Values.istio.enabled -}}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    {{- include "freshrss.labels" . | nindent 4 }}
+  name: {{ .Values.istio.gateway.tls.credentialName }}
+  namespace: istio-system
+spec:
+  dnsNames:
+  - {{ .Values.istio.gateway.hostName }}
+  issuerRef:
+    kind: {{ .Values.istio.gateway.tls.issuer.kind }}
+    name: {{ .Values.istio.gateway.tls.issuer.name }}
+  secretName: {{ .Values.istio.gateway.tls.credentialName }}
+{{- end }}
