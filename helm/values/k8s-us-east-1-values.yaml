@@ -22,6 +22,10 @@ podAnnotations:
 podLabels:
   app: freshrss
   version: "1.20.2"
+  sidecar.istio.io/inject: "true"
+
+updateStragegy:
+  type: Recreate
 
 persistence:
   enabled: true
