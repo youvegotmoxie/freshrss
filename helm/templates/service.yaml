@@ -4,6 +4,7 @@ metadata:
   name: {{ include "freshrss.fullname" . }}
   labels:
     {{- include "freshrss.labels" . | nindent 4 }}
+    app: {{ include "freshrss.fullname" . }}
 spec:
   type: {{ .Values.service.type }}
   ports:
