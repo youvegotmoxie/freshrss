@@ -1,0 +1,26 @@
+---
+{{- if .Values.istio.enabled }}
+{{- $fullName := include "freshrss.fullname" . -}}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+ name: {{ $fullName }}
+spec:
+  gateways:
+  - {{ $fullName }}
+  hosts:
+  - {{ .Values.istio.gateway.hostName  }}
+  http:
+  - name: {{ $fullName }}
+    route:
+    - destination:
+        host: {{ $fullName }}
+        subset: main
+      weight: 100
+    {{- if .Values.istio.virtualService.retries }}
+    {{- with .Values.istio.virtualService.retries }}
+    retries:
+    {{- toYaml . | nindent 5 }}
+    {{- end }}
+    {{- end }}
+{{- end }}

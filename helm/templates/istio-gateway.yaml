@@ -1,0 +1,34 @@
+{{- if .Values.istio.enabled -}}
+{{- $fullName := include "freshrss.fullname" . -}}
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "freshrss.labels" . | nindent 4 }}
+spec:
+  selector:
+    istio: {{ .Values.istio.gateway.selector }}
+  servers:
+{{- if .Values.istio.gateway.tls.enabled }}
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+     mode: SIMPLE
+     credentialName: {{ .Values.istio.gateway.tls.credentialName }}
+    hosts:
+    - {{ .Values.istio.gateway.hostName | quote }}
+{{- end }}
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - {{ .Values.istio.gateway.hostName | quote }}
+{{- if .Values.istio.gateway.tls.enabled }}
+    tls:
+     httpsRedirect: true
+{{- end }}
+{{- end }}

@@ -61,3 +61,6 @@ persistence:
 velero:
   enabled: false
   backupSchedule: []
+
+istio:
+  enabled: false
