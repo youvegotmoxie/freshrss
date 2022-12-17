@@ -15,4 +15,5 @@ spec:
   - name: main
     labels:
       app: {{ $fullName }}
+      version: {{ .Values.podLabels.version }}
 {{- end }}
