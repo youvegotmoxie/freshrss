@@ -46,7 +46,7 @@ velero:
           app.kubernetes.io/name: freshrss
       snapshotVolumes: true
       storageLocation: velero-hetzner-aws
-      ttl: 360h0m0s
+      ttl: 168h0m0s
       volumeSnapshotLocations:
       - velero-hetzner-aws
 
