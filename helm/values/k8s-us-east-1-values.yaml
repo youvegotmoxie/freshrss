@@ -67,8 +67,8 @@ istio:
       perTryTimeout: 2s
       retryOn: connect-failure,refused-stream,gateway-error
     envoyFilter:
-      enabled: false
-      maxRequests: 500
+      enabled: true
+      maxRequests: 1500
       tokenMultiplier: 1
       interval: "1s"
     trafficPolicy:
@@ -81,10 +81,3 @@ istio:
         interval: 5m
         baseEjectionTime: 5m
 
-resources:
-  limits:
-    cpu: 300m
-    memory: 500Mi
-  requests:
-    cpu: 100m
-    memory: 200Mi
