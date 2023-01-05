@@ -67,7 +67,7 @@ istio:
       perTryTimeout: 2s
       retryOn: connect-failure,refused-stream,gateway-error
     envoyFilter:
-      enabled: true
+      enabled: false
       maxRequests: 500
       tokenMultiplier: 1
       interval: "1s"
