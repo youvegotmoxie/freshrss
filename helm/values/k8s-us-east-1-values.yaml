@@ -34,7 +34,7 @@ persistence:
 velero:
   enabled: true
   backupSchedule:
-    schedule: '@every 24h'
+    schedule: '@every 48h'
     template:
       includeClusterResources: true
       includedNamespaces:
