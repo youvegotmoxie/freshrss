@@ -1,7 +1,7 @@
 # k8s-us-east-1 values
 
 ingress:
-  enabled: false
+  enabled: true
   className: "nginx"
   annotations:
     kubernetes.io/tls-acme: "true"
@@ -22,7 +22,7 @@ podAnnotations:
 podLabels:
   app: freshrss
   version: "1.20.2"
-  sidecar.istio.io/inject: "true"
+  sidecar.istio.io/inject: "false"
 
 updateStragegy:
   type: Recreate
@@ -51,12 +51,12 @@ velero:
       - velero-hetzner-aws
 
 istio:
-  enabled: true
+  enabled: false
   gateway:
     hostName: rss.unreliable.cloud
     selector: ingressgateway
     tls:
-      enabled: true
+      enabled: false
       credentialName: freshrss-tls
       issuer:
         name: letsencrypt-dns01-aws
@@ -67,7 +67,7 @@ istio:
       perTryTimeout: 2s
       retryOn: connect-failure,refused-stream,gateway-error
     envoyFilter:
-      enabled: true
+      enabled: false
       maxRequests: 1500
       tokenMultiplier: 1
       interval: "1s"
