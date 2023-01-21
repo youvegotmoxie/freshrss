@@ -17,10 +17,6 @@ spec:
         host: {{ $fullName }}
         subset: main
       weight: 100
-#    - destination:
-#        port:
-#          number: {{ .Values.service.port }}
-#        host: {{ $fullName }}
     {{- if .Values.istio.virtualService.retries }}
     {{- with .Values.istio.virtualService.retries }}
     retries:
